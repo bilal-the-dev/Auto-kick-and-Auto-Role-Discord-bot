@@ -7,7 +7,7 @@ Got a big Discord server and half the members are alt accounts? Looking for some
 - **Automatic Kicking**: Kicks members whose account age is below a certain duration without any manual intervention.
 - **Role Management**: Assigns or removes roles based on the account age.
 - **Logging**: Logs all actions in a specified log channel for transparency and record-keeping.
-- **Command**: `/kick [role]` command to kick all members that do not have the specified role.
+- **Command**: `/kick [firstRole] [secondRole]` command to kick all members that do not have any of the specified role.
 - **Auto functioning**: The bot performs the top 3 tasks automatically each 15 minutes.
 
 ## Configuration
@@ -50,18 +50,18 @@ In the `config.json` file, you need to specify whether to enable kicking or role
 
 ## Commands
 
-This command allows you to kick all members who do not have the specified role.
+This command allows you to kick all members who do not have any of the specified role.
 
 ```bash
-/kick [role]
+/kick [firstRole] [secondRole]
 ```
 
 # Example Usage
 
-If you want to kick all members who do not have the role Verified, you would use:
+If you want to kick all members who do not have the role Verified or VIP role, you would use:
 
 ```bash
-/kick Verified
+/kick Verified Verified
 ```
 
 This bot ensures that your Discord server remains clean and free of alt accounts, automatically managing members based on their account age.

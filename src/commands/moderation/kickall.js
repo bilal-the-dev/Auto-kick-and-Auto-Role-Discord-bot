@@ -14,13 +14,14 @@ module.exports = {
    */
   callback: async (client, interaction) => {
     try {
-      const targetRole = interaction.options.get("target-role").value;
+      const targetRole1 = interaction.options.get("target-role-1").value;
+      const targetRole2 = interaction.options.get("target-role-2").value;
 
       await interaction.deferReply();
 
-      if (!targetRole)
+      if (!targetRole1 || !targetRole2)
         return await interaction.editReply(
-          "This Role does not exist in server anymore."
+          "The role does not exist in server anymore."
         );
       const members = await interaction.guild.members.fetch();
 
@@ -29,7 +30,11 @@ module.exports = {
       );
 
       for (const member of [...members.values()]) {
-        if (member.roles.cache.has(targetRole)) continue;
+        if (
+          member.roles.cache.has(targetRole1) ||
+          member.roles.cache.has(targetRole2)
+        )
+          continue;
 
         try {
           await member.kick("Kicked by bot: has specific role");
@@ -72,8 +77,16 @@ module.exports = {
   description: "kick speciifc  Users",
   options: [
     {
-      name: "target-role",
-      description: "The role with whom you want to kick you want to kick.",
+      name: "target-role-1",
+      description:
+        "The first role with whom you want to kick you want to kick.",
+      type: ApplicationCommandOptionType.Role,
+      required: true,
+    },
+    {
+      name: "target-role-2",
+      description:
+        "The second role with whom you want to kick you want to kick.",
       type: ApplicationCommandOptionType.Role,
       required: true,
     },
